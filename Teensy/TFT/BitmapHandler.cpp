@@ -1,27 +1,27 @@
 #include "BitmapHandler.h"
 
-BitmapHandler::BitmapHandler(){
-  
+BitmapHandler::BitmapHandler() {
+
 };
 
 void  BitmapHandler::init(TeensyTFT* tft, uint8_t _orient) {
   tftRef = tft;
   orient = _orient;
-  Serial.println("Bitmap Handler");
+  Serial.println("Bitmap Handler completed");
 }
 
 void BitmapHandler::displayBmp(int x1, int y1, const char *bitmap, int pg) {
 
-  if(orient == PORTRAIT){
-    x1 = x1+pg;
-  }else {
-     y1 = y1+pg;
+  if (orient == PORTRAIT) {
+    x1 = x1 + pg;
+  } else {
+    y1 = y1 + pg;
   }
-  
+
   bmFile = SD.open(bitmap);
-  
+
   if (bmFile) {
-    
+
     Serial.println("Reading header first");
 
     // read from the file until there's nothing else in it:

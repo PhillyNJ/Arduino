@@ -1,3 +1,65 @@
+/*
+Created by Philip Vallone
+Ported from the UTFT Library http://www.rinkydinkelectronics.com/library.php?id=51
+and modified for the Teensy 4.1
+
+** TFT Display for the following TFTs **
+
+* SSD1989 320X240 (3.5 inch 320X240)- 16 bit
+* SSD1963 400x272 (4.3 inch 320X240)- 16 bit
+* SSD1963_800_5IN (5.0 inch 800X480)- 16 bit
+* SSD1963_800  (7.0 inch 800X480)- 16 bit
+* ILI9325D_8 (2.4 inch 320X240)- 8 bit
+* ILI9325D_16 (2.8 inch 320X240)- 16 bit
+* ILI9341 (2.4 inch 320X240)- 8 bit
+
+Reads bmp and raw images.
+
+* Paging only works on SSD1963_480 
+
+*/
+
+/* Pin out
+
+Teensy		8 bit TFT	16 bit TFT
+-------------------------------------
+38		RS		RS
+39		WR		WR
+40		CS		CS
+41		RS_T		RS_T (RESET)
+
+
+0		8		DB00
+1		9		DB01
+2		10		DB02
+3		11		DB03
+4		12		DB04
+5		13		DB05
+6		14		DB06
+7		15		DB07
+
+8		----		DB08
+9		----		DB09
+10		----		DB10
+11		----		DB11
+12		----		DB12
+13		----		DB13
+14		----		DB14
+15		----		DB15
+
+SPI For Touch on EXT2
+------------------------------------
+Teensy		TFT		Function
+------------------------------------
+A6 (20) 	T_CS		SS
+A7 (21)		T_DIN		MOSI
+A8 (22)		T_DO		MISO
+A9 (23)		T_CLK		SCK
+
+*/
+
+
+
 #ifndef TFTCONFIG_H
 #define TFTCONFIG_H
 
