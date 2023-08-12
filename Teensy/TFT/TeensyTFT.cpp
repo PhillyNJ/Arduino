@@ -1339,7 +1339,7 @@ void TeensyTFT::fillPage(uint8_t r, uint8_t g, uint8_t b, int page) {
   setXY(x1, y1, x2, y2);
 
 
-  uint32_t pixels = ((config.width ) * (config.height));
+  uint32_t pixels = ((config.width + 1) * (config.height + 1));
 
   setRs();
 
