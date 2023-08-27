@@ -1192,7 +1192,7 @@ void TeensyTFT::setPage(int pageNumber) {
   scroll(pageNumber);
 }
 
-// not working for ssd1289 - load from sd or usb instead
+
 void TeensyTFT::load_raw_image_mem(int x1, int y1, int imgX, int imgY, const uint16_t* img, int size, int page) {
 
   if (config.orient == PORTRAIT) {
@@ -1203,16 +1203,33 @@ void TeensyTFT::load_raw_image_mem(int x1, int y1, int imgX, int imgY, const uin
 
   clearCs();
 
-  setXY(x1, y1, (imgX + x1) - 1, (imgY + y1) - 1 );
+  if (config.tft_model == SSD1289 || config.tft_model == ILI9325D_16){
+	   
+	  int pos = 0;
+	 
+	  for (int y = 0; y < imgY; y++) {
+			for (int x = 0; x < imgX; x++) {
+			  
+			  setXY(x1 + x, y1 + y, x1 + x, y1 + y);
+			 
+			  writeData((img[pos] >> 8), img[pos]);
+			  pos++;
+			}
+	  }
+  }else{
+	   setXY(x1, y1, (imgX + x1) - 1, (imgY + y1) - 1 );
 
-  for (int y = 0; y < size; y++) {
-
-    writeData((img[y] >> 8), img[y]);
+	  for (int y = 0; y < size; y++) {
+	
+		writeData((img[y] >> 8), img[y]);
+	  }
   }
+ 
 
   setCs();
   clrXY();
 }
+
 
 /*
   x1 = X point
